@@ -8,7 +8,7 @@ import retrofit2.http.Path
 
 interface RetrofitService {
 
-    @GET("/albums")
+    @GET("albums/")
     fun getAlbums(): Single<List<Album>>
 
     @GET("albums/{id}/photos")

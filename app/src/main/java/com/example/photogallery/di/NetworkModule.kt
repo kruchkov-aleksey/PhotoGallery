@@ -61,7 +61,7 @@ class NetworkModule {
             .addInterceptor { chain ->
                 var request = chain.request()
 
-                request = if (true) request.newBuilder().header("Cahce-Control","public, max-age=" + 5).build()
+                request = if (true) request.newBuilder().header("Cache-Control","public, max-age=" + 5).build()
                 else request.newBuilder().header(
                     "Cache-Control",
                     "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7
@@ -85,7 +85,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun porvidesRxJavaCallAdapterFactory():RxJava2CallAdapterFactory{
+    fun providesRxJavaCallAdapterFactory():RxJava2CallAdapterFactory{
         return RxJava2CallAdapterFactory.create()
     }
 

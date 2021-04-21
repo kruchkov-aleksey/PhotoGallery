@@ -3,6 +3,7 @@ package com.example.photogallery.data.source.local.dao
 import androidx.room.*
 import com.example.photogallery.domain.model.Photo
 
+@Dao
 interface PhotoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(photo: Photo): Long

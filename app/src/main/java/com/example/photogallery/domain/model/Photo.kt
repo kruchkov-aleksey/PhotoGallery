@@ -8,7 +8,7 @@ data class Photo(
         @PrimaryKey var id: Long,
         var title: String,
         val url: String,
-        val thumbnauilUrl: String?
+        val thumbnailUrl: String?
 ){
         fun setName(text: String){
                 title = text
