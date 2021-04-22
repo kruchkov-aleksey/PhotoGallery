@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.photogallery.R
 import com.example.photogallery.domain.model.Album
 import com.example.photogallery.presentation.album.AlbumsFragment
+import com.example.photogallery.presentation.photo.PhotosFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,16 +21,24 @@ class GalleryActivity : AppCompatActivity(), OnGalleryCallback {
         }
     }
 
-    override fun navigateToAlbumPage(album: Album) {
-        TODO("Not yet implemented")
-    }
     private fun navigateToGalleryPage(){
         supportFragmentManager.beginTransaction()
                 .replace(
                         R.id.gallery_container,
                         AlbumsFragment.newInstance(),
-                        AlbumsFragment.FRAGMENT_NAME,
+                        AlbumsFragment.FRAGMENT_NAME
                 ).commitAllowingStateLoss()
+    }
+
+    override fun navigateToAlbumPage(album: Album) {
+        supportFragmentManager.beginTransaction()
+                .replace(
+                        R.id.gallery_container,
+                        PhotosFragment.newInstance(album.id),
+                        PhotosFragment.FRAGMENT_NAME
+                )
+                .addToBackStack(PhotosFragment.FRAGMENT_NAME)
+                .commitAllowingStateLoss()
     }
 
     override fun gotoDetailPageByPhotoId(imageView: ImageView, id: Long) {

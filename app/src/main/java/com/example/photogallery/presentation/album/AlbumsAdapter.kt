@@ -20,6 +20,10 @@ internal class AlbumsAdapter(val mListener: OnAlbumsAdapterListener) :
             val holderAlbumBinding = dataBinding as HolderAlbumBinding
             val albumViewModel = AlbumViewModel(album)
             holderAlbumBinding.albumViewModel = albumViewModel
+
+            itemView.setOnClickListener {
+                mListener.showPhotos(album)
+            }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
