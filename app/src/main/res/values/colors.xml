@@ -15,6 +15,7 @@
     <color name="gainsBoro">#b9b9b9</color>
     <color name="whiteSmoke">#f4f4f4</color>
     <color name="golden">#ffc800</color>
+    <color name="white">#FFFFFF</color>
     <color name="lightGray">#eaeaea</color>
     <color name="transparent">#5a000000</color>
 </resources>

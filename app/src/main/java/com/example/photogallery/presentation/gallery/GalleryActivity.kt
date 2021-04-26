@@ -1,11 +1,17 @@
 package com.example.photogallery.presentation.gallery
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.view.ViewCompat
 import com.example.photogallery.R
 import com.example.photogallery.domain.model.Album
 import com.example.photogallery.presentation.album.AlbumsFragment
+import com.example.photogallery.presentation.detailphoto.PhotoDetailActivity
 import com.example.photogallery.presentation.photo.PhotosFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,8 +48,24 @@ class GalleryActivity : AppCompatActivity(), OnGalleryCallback {
     }
 
     override fun gotoDetailPageByPhotoId(imageView: ImageView, id: Long) {
-        TODO("Not yet implemented")
+        val intent = Intent(this, PhotoDetailActivity::class.java)
+        val bundle = Bundle().apply {
+            putLong(KEY_PHOTO_ID, id)
+        }
+        intent.putExtras(bundle)
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this,
+                    imageView,
+                    ViewCompat.getTransitionName(imageView) ?: ""
+        )
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            startActivity(intent, options.toBundle())
+        }else{
+            startActivity(intent)
+        }
     }
 
-
+    companion object{
+        private val KEY_PHOTO_ID = "KEY_PHOTO_ID"
+    }
 }
